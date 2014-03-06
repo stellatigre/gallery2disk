@@ -4,12 +4,12 @@ var async   = require('async'),
     fs      = require('fs'),
     cheerio = require('cheerio'),
     req     = require('request'),
-    galleries = require('./galleries.json'), //run scraper.js first to make this file
-    conf    = require('./config.json');
+    conf    = require('./config.json'),
+    galleries = require(conf.jsonStore), //run scraper.js first to make this file
+	cookieJar = req.jar(),		// Example uses a wordpress cookie for this stuff
+	cookie = req.cookie(conf.cookie);
 
-var cookieJar = req.jar();		// Example uses a wordpress cookie for this stuff
-var cookie = req.cookie(conf.cookie);
-cookieJar.setCookie(cookie, conf.domain);
+cookieJar.setCookie(cookie, conf.domain);  
 
 // Regex to find the large pictures linked to by the gallery, NOT the thumbnails
 var picRegex = /gallery\/p[0-9]{6,8}\.jpg$/
@@ -23,8 +23,8 @@ for (var i=0 ; i < galleries.length ; i++) {
 
 	// This is some path / filename mangling specific to my example site.  
 	// It makes correct folders (by gallery) and filenames.
-        var folder = fileUrl.substring(fileUrl.indexOf('gallery/')+7);
-        folder = '.'+folder.slice(0, folder.lastIndexOf('/'))+'/';
+    var folder = fileUrl.substring(fileUrl.indexOf('gallery/')+7);
+    folder = '.'+folder.slice(0, folder.lastIndexOf('/'))+'/';
         
 	var fileName = fileUrl.substring(fileUrl.lastIndexOf('/')+1);
 		

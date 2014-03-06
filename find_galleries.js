@@ -22,7 +22,7 @@ req.get(conf.startUrl, function(err, res, body) { // make our request for the st
     }
    
     console.log(galleries, galleries.length+' galleries found.\n');	 // store relative URLs of galleries,
-    fs.writeFileSync('galleries.json', JSON.stringify(galleries)); // to be consumed by download.js
+    fs.writeFileSync(conf.jsonStore, JSON.stringify(galleries)); // to be consumed by download.js
 });
 
 
