@@ -32,9 +32,9 @@ for (var i=0 ; i < galleries.length ; i++) {
         req.get({
 				'url' : fileUrl, 
 				'encoding' :'binary',  // specifying this encoding is necessary here.
-				'jar' : cookieJar
+				'jar' : cookieJar,
 				'headers': {		// pick random user agent
-        			'User-Agent': conf.userAgents[Math.floor(Math.random() * (1 + conf.userAgents.length))];
+        			'User-Agent': conf.userAgents[Math.floor(Math.random() * (1 + conf.userAgents.length))]
     			}	
 		}, 
 		function (err, res, body) { 
