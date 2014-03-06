@@ -16,33 +16,33 @@ var picRegex = /gallery\/p[0-9]{6,8}\.jpg$/
 
 for (var i=0 ; i < galleries.length ; i++) {
 
-    	var gallery = galleries[i];    
+    var gallery = galleries[i];    
    
-    	// this function take a URL for a downloadable file  
-    	var download = function(fileUrl) {
+    // this function take a URL for a downloadable file  
+    var download = function(fileUrl) {
 
-	// This is some path / filename mangling specific to my example site.  
-	// It makes correct folders (by gallery) and filenames.
-    	var folder = fileUrl.substring(fileUrl.indexOf('gallery/')+7);
-    	folder = '.'+folder.slice(0, folder.lastIndexOf('/'))+'/';
+    // This is some path / filename mangling specific to my example site.  
+    // It makes correct folders (by gallery) and filenames.
+    var folder = fileUrl.substring(fileUrl.indexOf('gallery/')+7);
+    folder = '.'+folder.slice(0, folder.lastIndexOf('/'))+'/';
         
-	var fileName = fileUrl.substring(fileUrl.lastIndexOf('/')+1);
+var fileName = fileUrl.substring(fileUrl.lastIndexOf('/')+1);
 		
-	console.log(folder,fileName); // fun to watch stream everything by and useful during dev
+console.log(folder,fileName); // fun to watch stream everything by and useful during dev
         
 	// This is the part that handles the actual downloading.
-        req.get({
-		'url' : fileUrl, 
-		'encoding' :'binary',  // specifying this encoding is necessary here.
-		'jar' : cookieJar,
-		'headers': {		// pick random user agent
-        	'User-Agent': conf.userAgents[Math.floor(Math.random() * (1 + conf.userAgents.length))]
-    		}	
-	}, 
-		function (err, res, body) { 
-            	    if (!fs.existsSync(folder)) { fs.mkdirSync(folder); } // checks for existing folders/files
-            	    if (!fs.existsSync(folder+fileName)) {   
-                	fs.writeFile(folder+fileName, body, 'binary', function(err) {
+    req.get({
+	'url' : fileUrl, 
+	'encoding' :'binary',  // specifying this encoding is necessary here.
+	'jar' : cookieJar,
+	'headers': {		// pick random user agent
+        'User-Agent': conf.userAgents[Math.floor(Math.random() * (1 + conf.userAgents.length))]
+    	}	
+    }, 
+	function (err, res, body) { 
+        	if (!fs.existsSync(folder)) { fs.mkdirSync(folder); } // checks for existing folders/files
+            	if (!fs.existsSync(folder+fileName)) {   
+               		fs.writeFile(folder+fileName, body, 'binary', function(err) {
                             if(err) console.log(err);
                             else console.log(folder+fileName+" saved.");
                 });
