@@ -5,7 +5,7 @@ var async   = require('async'),
     fs      = require('fs'),
     cheerio = require('cheerio'),
     req     = require('request');
-	conf	= require('./config.json'); 
+    conf    = require('./config.json'); 
 
 // change this to suit your site
 var galleryRgx = /^\/[a-zA-Z0-9 \-]{2,20}\/?$/	
