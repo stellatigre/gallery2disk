@@ -26,9 +26,9 @@ for (var i=0 ; i < galleries.length ; i++) {
     var folder = fileUrl.substring(fileUrl.indexOf('gallery/')+7);
     folder = '.'+folder.slice(0, folder.lastIndexOf('/'))+'/';
         
-var fileName = fileUrl.substring(fileUrl.lastIndexOf('/')+1);
+    var fileName = fileUrl.substring(fileUrl.lastIndexOf('/')+1);
 		
-console.log(folder,fileName); // fun to watch stream everything by and useful during dev
+    console.log(folder,fileName); // fun to watch stream everything by and useful during dev
         
 	// This is the part that handles the actual downloading.
     req.get({
