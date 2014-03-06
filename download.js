@@ -6,8 +6,8 @@ var async   = require('async'),
     req     = require('request'),
     conf    = require('./config.json'),
     galleries = require(conf.jsonStore), //run scraper.js first to make this file
-	cookieJar = req.jar(),		// Example uses a wordpress cookie for this stuff
-	cookie = req.cookie(conf.cookie);
+    cookieJar = req.jar(),		// Example uses a wordpress cookie for this stuff
+    cookie = req.cookie(conf.cookie);
 
 cookieJar.setCookie(cookie, conf.domain);  
 
@@ -16,15 +16,15 @@ var picRegex = /gallery\/p[0-9]{6,8}\.jpg$/
 
 for (var i=0 ; i < galleries.length ; i++) {
 
-    var gallery = galleries[i];    
+    	var gallery = galleries[i];    
    
-    // this function take a URL for a downloadable file  
-    var download = function(fileUrl) {
+    	// this function take a URL for a downloadable file  
+    	var download = function(fileUrl) {
 
 	// This is some path / filename mangling specific to my example site.  
 	// It makes correct folders (by gallery) and filenames.
-    var folder = fileUrl.substring(fileUrl.indexOf('gallery/')+7);
-    folder = '.'+folder.slice(0, folder.lastIndexOf('/'))+'/';
+    	var folder = fileUrl.substring(fileUrl.indexOf('gallery/')+7);
+    	folder = '.'+folder.slice(0, folder.lastIndexOf('/'))+'/';
         
 	var fileName = fileUrl.substring(fileUrl.lastIndexOf('/')+1);
 		
