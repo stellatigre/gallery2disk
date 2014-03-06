@@ -1,0 +1,12 @@
+{
+  "name": "gallery2disk",
+  "version": "0.0.3",
+  "description": "Node.js website file scraper",
+  "main": "find_galleries.js",
+  "author": "Stella Cannefax",
+  "dependencies": {
+    "async": "~0.2.10",
+    "request": "~2.34.0",
+    "cheerio": "~0.13.1"
+  }
+}
