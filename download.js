@@ -31,8 +31,11 @@ for (var i=0 ; i < galleries.length ; i++) {
 		// This is the part that handles the actual downloading.
         req.get({
 				'url' : fileUrl, 
-				'encoding' :'binary',
+				'encoding' :'binary',  // specifying this encoding is necessary here.
 				'jar' : cookieJar
+				'headers': {		// pick random user agent
+        			'User-Agent': conf.userAgents[Math.floor(Math.random() * (1 + conf.userAgents.length))];
+    			}	
 		}, 
 		function (err, res, body) { 
             if (!fs.existsSync(folder)) { fs.mkdirSync(folder); } // checks for existing folders/files
@@ -48,7 +51,7 @@ for (var i=0 ; i < galleries.length ; i++) {
     var pictures = [];
     
     req.get({
-        'url' : conf.domain+gallery.replace(/\/$/, '-2/'), // again, site-specific path mangling
+        'url' : conf.domain+gallery.replace(/\/$/, '-2/'), // again, site-specific URL mangling
         'jar' : cookieJar 								  // use our cookie
         },
         function(err, res, body) {
