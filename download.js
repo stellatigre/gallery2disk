@@ -1,3 +1,5 @@
+// This script handles the parsing of the galleries for image links
+// as well as the creation of folders and files from the pages
 var async   = require('async'),			
     fs      = require('fs'),
     cheerio = require('cheerio'),
