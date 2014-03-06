@@ -5,7 +5,7 @@ var async   = require('async'),
     fs      = require('fs'),
     cheerio = require('cheerio'),
     req     = require('request');
-	conf	= require('./config.json');
+	conf	= require('./config.json'); 
 
 // change this to suit your site
 var galleryRgx = /^\/[a-zA-Z0-9 \-]{2,20}\/?$/	
@@ -18,7 +18,7 @@ req.get(conf.startUrl, function(err, res, body) {
 
     for (var i=0 ; i < aTags.length; i++) {
         var href = aTags[i].attribs.href;
-        if (galleryRgx.test(href)) { galleries.push(href); }
+        if (galleryRgx.test(href)) { galleries.push(href); } // test each link  by regex
     }
    
     console.log(galleries, galleries.length+' galleries found.\n');	 // store relative URLs of galleries,

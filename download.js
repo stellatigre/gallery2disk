@@ -2,10 +2,10 @@ var async   = require('async'),
     fs      = require('fs'),
     cheerio = require('cheerio'),
     req     = require('request'),
-    galleries = require('./galleries.json'),//run scraper.js first to make this file
+    galleries = require('./galleries.json'), //run scraper.js first to make this file
     conf    = require('./config.json');
 
-var cookieJar = req.jar();		// Example used a valid wordpress cookie for this stuff
+var cookieJar = req.jar();		// Example uses a wordpress cookie for this stuff
 var cookie = req.cookie(conf.cookie);
 cookieJar.setCookie(cookie, conf.domain);
 
@@ -29,7 +29,12 @@ for (var i=0 ; i < galleries.length ; i++) {
 		console.log(folder,fileName); // fun to watch stream everything by and useful during dev
         
 		// This is the part that handles the actual downloading.
-        req.get({'url' : fileUrl, 'encoding' :'binary'}, function (err, res, body) { 
+        req.get({
+				'url' : fileUrl, 
+				'encoding' :'binary',
+				'jar' : cookieJar
+		}, 
+		function (err, res, body) { 
             if (!fs.existsSync(folder)) { fs.mkdirSync(folder); } // checks for existing folders/files
             if (!fs.existsSync(folder+fileName)) {   
                 fs.writeFile(folder+fileName, body, 'binary', function(err) {
