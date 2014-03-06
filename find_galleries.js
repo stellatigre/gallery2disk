@@ -11,7 +11,7 @@ var async   = require('async'),
 var galleryRgx = /^\/[a-zA-Z0-9 \-]{2,20}\/?$/	
 var galleries = [];    
 
-req.get(conf.startUrl, function(err, res, body) {
+req.get(conf.startUrl, function(err, res, body) { // make our request for the startUrl
     if (err) throw err;
     var $ = cheerio.load(body);
     var aTags = $('a');			// cheerio uses jQuery selector syntax
