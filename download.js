@@ -54,8 +54,11 @@ for (var i=0 ; i < galleries.length ; i++) {
     
     req.get({
         'url' : conf.domain+gallery.replace(/\/$/, '-2/'), // again, site-specific URL mangling
-        'jar' : cookieJar 								  // use our cookie
-        },
+        'jar' : cookieJar, 								  // use our cookie 
+		'headers': {		// pick random user agent
+        	'User-Agent': conf.userAgents[Math.floor(Math.random() * (1 + conf.userAgents.length))]
+    		}	
+     },
         function(err, res, body) {
             if (err) throw err;
             var $ = cheerio.load(body);		// cheerio parses our response body
