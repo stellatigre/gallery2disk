@@ -1,10 +1,9 @@
 // This script finds galleries in a website based on a regular expression in the URLs.  
 // Run it first - works for any website with regular URLs that's organized by gallery ( a lot of them). 
 // Obviously, the regex has to be changed for each site.
-var async   = require('async'),
-    fs      = require('fs'),
+var fs      = require('fs'),
     cheerio = require('cheerio'),
-    req     = require('request');
+    req     = require('request'),
     conf    = require('./config.json'); 
 
 // change this to suit your site
