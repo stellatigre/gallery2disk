@@ -12,7 +12,7 @@ var async   = require('async'),
 cookieJar.setCookie(cookie, conf.domain);  
 
 // Regex to find the large pictures linked to by the gallery, NOT the thumbnails
-var picRegex = /gallery\/p[0-9]{6,8}\.jpg$/
+var picRegex = /gallery\/[a-z]?[0-9]{6,8}\.jpg$/
 
 // this function takes a URL for a downloadable file  
 var downloadFromUrl = function(fileUrl) {
